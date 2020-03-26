@@ -519,7 +519,7 @@ export class PanelManager {
 
     updateProjectionSelectField(options: string[], defaultOption = null) {
         const op = this.panels.projectorSelect
-            .selectAll('option').data(options);
+            .selectAll<HTMLOptionElement,any>('option').data(options);
         op.exit().remove();
         op.enter().append('option')
             .merge(op)

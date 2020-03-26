@@ -197,14 +197,14 @@ export class WordLine extends VComponent<WordLineData> {
 
         // [rows of [words of {wordRect, wordText}]]
 
-        let rows = this.base.selectAll('.word_row').data(render.rows);
+        let rows = this.base.selectAll<SVGGElement,any>('.word_row').data(render.rows);
         rows.exit().remove();
         rows = rows.enter()
             .append('g').attr('class', 'word_row')
             .merge(rows)
             .attr('transform', (_, i) => `translate(${op.x_offset},${(i) * (op.box_height)})`);
 
-        let words = rows.selectAll(`.${op.css_class_main}`)
+        let words = rows.selectAll<SVGGElement,any>(`.${op.css_class_main}`)
             .data((row, rowID) => row.map((word, col) => ({
                 row: rowID,
                 word,

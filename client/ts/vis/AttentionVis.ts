@@ -126,7 +126,7 @@ export class AttentionVis extends VComponent<AttentionVisData> {
 
         const op = this.options;
 
-        const graph = this.base.selectAll(`.${op.css_class_main}`)
+        const graph = this.base.selectAll<SVGGElement,any>(`.${op.css_class_main}`)
             .data(renderData.edges);
         graph.exit().remove();
 

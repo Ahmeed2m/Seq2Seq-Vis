@@ -116,7 +116,7 @@ export class InfoPanel {
     update(data: InfoPanelData) {
         this.data = data;
 
-        let tSel = this.infoPanel.selectAll(".translation").data(data.translations);
+        let tSel = this.infoPanel.selectAll<HTMLDivElement,any>(".translation").data(data.translations);
         tSel.exit().remove();
 
         const tEnter = tSel.enter().append('div').attr('class', 'translation').style('display', 'table-row');

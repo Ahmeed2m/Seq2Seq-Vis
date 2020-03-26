@@ -231,7 +231,7 @@ export class StateProjector extends VComponent<StateProjectorData> {
         const nDetails = StateProjector.neighborDetails;
 
 
-        let pps = this.layers.main.selectAll('.pp').data(states);
+        let pps = this.layers.main.selectAll<SVGGElement,any>('.pp').data(states);
         pps.exit().remove();
 
         let ppsEnter = pps.enter().append('g').attr('class', 'pp');
@@ -244,7 +244,7 @@ export class StateProjector extends VComponent<StateProjectorData> {
         pps.select('circle').attr('r', d => Math.sqrt(2*d.occ.length));
 
         pps.on('mouseenter', d => {
-            const allL = this.layers.main.selectAll('.hoverLine')
+            const allL = this.layers.main.selectAll<SVGLineElement,any>('.hoverLine')
                 .data(nDetails(d.occ)
                     .map(oc => cur.pivots[oc.refTransID][oc.refWordID]));
 
@@ -305,7 +305,7 @@ export class StateProjector extends VComponent<StateProjectorData> {
             .y(d => cur.yScale(d.pos[1]));
         // .curve(d3.curveCardinal)
 
-        let pls = this.layers.fg.selectAll('.pl.' + className)
+        let pls = this.layers.fg.selectAll<SVGPathElement,any>('.pl.' + className)
             .data([onlyPivots]);
         pls = pls.enter().append('path').attr('class', 'pl ' + className)
             .merge(pls);
@@ -314,7 +314,7 @@ export class StateProjector extends VComponent<StateProjectorData> {
             .attr('d', line)
             .style('stroke-width', 2. / Math.sqrt(cur.zoomTransform.k) + 'px');
 
-        let plPoints = this.layers.fg.selectAll('.plPoint.' + className).data(onlyPivots);
+        let plPoints = this.layers.fg.selectAll<SVGCircleElement,any>('.plPoint.' + className).data(onlyPivots);
         plPoints.exit().remove();
         plPoints = plPoints.enter().append('circle').attr('class', 'plPoint ' + className)
             .merge(plPoints);
@@ -328,7 +328,7 @@ export class StateProjector extends VComponent<StateProjectorData> {
         plPoints.classed('endPoint', d => d.pivot.word_ID === onlyPivots.length - 1);
 
 
-        const plLabel = this.layers.fg.selectAll(".plLabel." + className)
+        const plLabel = this.layers.fg.selectAll<SVGTextElement,any>(".plLabel." + className)
             .data(labels);
 
         plLabel.exit().remove();
@@ -432,7 +432,7 @@ export class StateProjector extends VComponent<StateProjectorData> {
             const lGen = d3.line().curve(d3.curveLinearClosed);
 
             const allPoly = this.layers.main
-                .selectAll('.hoverLine').data([polygon])
+                .selectAll<SVGPathElement,any>('.hoverLine').data([polygon])
 
             allPoly.exit().remove();
             allPoly.enter().append('path').attr('class', 'hoverLine')
@@ -462,7 +462,7 @@ export class StateProjector extends VComponent<StateProjectorData> {
 
     actionHoverRegion(regions: { x: number, y: number, w: number, h: number }[], hovered: boolean, pixelCoord = true) {
 
-        let hRect = this.layers.fg.selectAll('.highlightRect')
+        let hRect = this.layers.fg.selectAll<SVGRectElement,any>('.highlightRect')
             .data(hovered ? regions : []);
         hRect.exit().remove();
 

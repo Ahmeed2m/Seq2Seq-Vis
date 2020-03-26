@@ -73,7 +73,7 @@ export class StateVis extends VComponent<StateVisData> {
             .y(d => y(d));
 
 
-        const stateLine = this.layers.main.selectAll(`.${op.css_line}`).data(renderData.states);
+        const stateLine = this.layers.main.selectAll<SVGPathElement,any>(`.${op.css_line}`).data(renderData.states);
         stateLine.exit().remove();
 
         const stateLineEnter = stateLine.enter().append('path').attr('class', op.css_line);

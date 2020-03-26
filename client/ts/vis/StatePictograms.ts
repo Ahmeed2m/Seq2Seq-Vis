@@ -143,14 +143,14 @@ export class StatePictograms extends VComponent<null> {
         }
 
 
-        let panRow = this.parent.selectAll('.row').data(lineSeqs);
+        let panRow = this.parent.selectAll<HTMLDivElement,any>('.row').data(lineSeqs);
         panRow.exit().remove();
 
         panRow = panRow.enter()
             .append('div').attr('class', 'row')
             .merge(panRow);
 
-        let pCanvasFrame = panRow.selectAll('.pCanvasFrame').data(d => d);
+        let pCanvasFrame = panRow.selectAll<SVGGElement,any>('.pCanvasFrame').data(d => d);
         pCanvasFrame.exit().remove();
 
         // noinspection JSSuspiciousNameCombination

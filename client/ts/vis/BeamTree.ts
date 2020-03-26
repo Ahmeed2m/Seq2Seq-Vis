@@ -69,7 +69,7 @@ export class BeamTreeVis extends VComponent<BeamTreeData> {
 
 
         let i = 0;
-        let nodeEls = this.layers.main.selectAll('g.node')
+        let nodeEls = this.layers.main.selectAll<SVGGElement,any>('g.node')
             .data(nodes, function (d: any) {
                 return d.id || (d.id = ++i);
             });
@@ -107,7 +107,7 @@ export class BeamTreeVis extends VComponent<BeamTreeData> {
             .y(d => d.x + 5);
 
 
-        let link = this.layers.bg.selectAll('.link')
+        let link = this.layers.bg.selectAll<SVGPathElement,any>('.link')
             .data(links, (d: any) => d.id)
 
         const linkEnter = link.enter().append('path').attr('class', 'link')

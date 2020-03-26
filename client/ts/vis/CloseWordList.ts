@@ -105,7 +105,7 @@ export class CloseWordList extends VComponent<any> {
         this.parent.attr('height', noItems * ls);
 
 
-        const word = this.layers.main.selectAll(".word").data(renderData);
+        const word = this.layers.main.selectAll<SVGTextElement,any>(".word").data(renderData);
         word.exit().remove();
 
         const wordEnter = word.enter().append('text').attr('class', 'word');
@@ -129,7 +129,7 @@ export class CloseWordList extends VComponent<any> {
         const barScale = d3.scaleLinear().domain([0, maxScore])
             .range([0, op.scoreWidth]);
 
-        const scoreBars = this.layers.main.selectAll(".scoreBar").data(renderData);
+        const scoreBars = this.layers.main.selectAll<SVGGElement,any>(".scoreBar").data(renderData);
         scoreBars.exit().remove();
 
         const scoreBarsEnter = scoreBars.enter().append('g').attr('class', 'scoreBar');
@@ -158,7 +158,7 @@ export class CloseWordList extends VComponent<any> {
                 .range([1, 100]);
 
 
-            const barDist = this.layers.main.selectAll(".distBar").data(renderData);
+            const barDist = this.layers.main.selectAll<SVGGElement,any>(".distBar").data(renderData);
             barDist.exit().remove();
             const barDistEnter = barDist.enter().append('g').attr('class', 'distBar');
             barDistEnter.append('rect');
@@ -181,7 +181,7 @@ export class CloseWordList extends VComponent<any> {
             all_barDist.select('text').text(d => f2f(d.compare.dist));
 
 
-            const wordComp = this.layers.main.selectAll(".wordComp").data(renderData);
+            const wordComp = this.layers.main.selectAll<SVGTextElement,any>(".wordComp").data(renderData);
             wordComp.exit().remove();
 
             const wordCompEnter = wordComp.enter().append('text').attr('class', 'wordComp');

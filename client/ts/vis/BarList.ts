@@ -61,7 +61,7 @@ export class BarList extends VComponent<BarListData> {
         const op = this.options;
         const cur = this._current;
 
-        const bars = this.base.selectAll(`.${op.css_bar}`).data(rData.values);
+        const bars = this.base.selectAll<SVGRectElement, any>(`.${op.css_bar}`).data(rData.values);
         bars.exit().remove();
 
         const barsEnter = bars.enter().append('rect').attr('class', op.css_bar);

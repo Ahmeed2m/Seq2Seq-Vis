@@ -115,7 +115,7 @@ export class WordProjector extends VComponent<any> {
         // console.log(renderData, "--- renderData");
         const op = this.options;
 
-        const word = this.layers.main.selectAll(".word").data(renderData);
+        const word = this.layers.main.selectAll<SVGGElement,any>(".word").data(renderData);
         word.exit().remove();
 
         const wordEnter = word.enter().append('g').attr('class', 'word');
