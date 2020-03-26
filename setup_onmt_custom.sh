@@ -9,4 +9,5 @@ cd OpenNMT-py/
 git checkout states_in_translation
 python setup.py install
 pip install torchtext==0.2.3
+pip install torch==0.3.1
 cd ..
